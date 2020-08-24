@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import '../App.css';
 import {
     Button,
@@ -7,16 +7,15 @@ import {
     NavbarToggler,
     Nav,
     NavItem,
-    NavLink,
     Container,
     NavbarBrand,
 
 } from 'reactstrap';
+import { connect } from 'react-redux';
 import Logout from './auth/Logout';
 import LoginModal from './auth/LoginModal';
-import { Image } from 'react-bootstrap';
 import RegisterModal from '../components/auth/registerModal';
-class AppNavBar extends Component {
+class NavBar extends Component {
     state = {
         isOpen: false
     }
@@ -27,6 +26,28 @@ class AppNavBar extends Component {
         });
     }
     render() {
+        // pull out from props
+        const { isAuthenticated, user } = this.props.auth
+        // links for users that are authenticated
+        const authLinks = (
+            <Fragment>
+
+                <span className="navbar-text mr-3">
+                    <strong>{user ? `Welcome ${user.name}` : null}</strong>
+                </span>
+
+                <Logout />
+            </Fragment>
+        )
+        // links for guests
+        const guestLinks = (
+            <Fragment>
+                <RegisterModal />
+                <LoginModal />
+            </Fragment>
+        )
+
+
         return (
             <div>
 
@@ -44,9 +65,7 @@ class AppNavBar extends Component {
                                     <Button href="https://wwww.google.com" className="nav-btn" outline color="info" style={{ margin: '1rem' }}>Our Products</Button>
                                     <Button href="https://wwww.google.com" className="nav-btn" outline color="info" style={{ margin: '1rem' }}>FAQ</Button>
                                     <Button href="https://wwww.google.com" className="nav-btn" outline color="info" style={{ margin: '1rem' }}>Cart</Button>
-                                    <RegisterModal />
-                                    <LoginModal />
-                                    <Logout />
+                                    {isAuthenticated ? authLinks : guestLinks}
                                 </NavItem>
                             </Nav>
                         </Collapse>
@@ -56,4 +75,7 @@ class AppNavBar extends Component {
         );
     }
 }
-export default AppNavBar;
+const mapStateToProps = state => ({
+    auth: state.auth
+})
+export default connect(mapStateToProps, null)(NavBar);

@@ -16,7 +16,7 @@ export const loadUser = () => (dispatch, getState) => {
     // user loading false to true
     dispatch({ type: USER_LOADING });
 
-    axios.get('/api/auth/user', tokenConfig(getState))
+    axios.post('http://www.localhost:5000/api/auth/user', tokenConfig(getState))
         .then(res => dispatch({
             type: USER_LOADED,
             payload: res.data

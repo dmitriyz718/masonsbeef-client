@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-    Jumbotron, Container, Card, Button, CardImg, CardTitle, CardText, CardGroup,
+    Card, Button, CardImg, CardTitle, CardText, CardGroup,
     CardSubtitle, CardBody
 } from 'reactstrap';
 import '../App.css'
