@@ -9,9 +9,11 @@ import {
     NavItem,
     NavLink,
     Container,
-    NavbarBrand
-} from 'reactstrap';
+    NavbarBrand,
 
+} from 'reactstrap';
+import { Image } from 'react-bootstrap';
+import RegisterModal from '../components/auth/registerModal';
 class AppNavBar extends Component {
     state = {
         isOpen: false
@@ -25,26 +27,28 @@ class AppNavBar extends Component {
     render() {
         return (
             <div>
-                <Navbar color="light" light expand="sm" className="mb-5">
+
+                <Navbar color="dark" dark expand="sm" className="mb-5" sticky="top">
                     <Container>
-                        <NavbarBrand href="/">
-                            <img src="http://dnyc.dev/masonsbeef/logo.png" style={{ width: '20vw', marginTop: -7 }} className="nav-logo" left />
+
+                        <NavbarBrand href="/" className="brand-text" style={{ color: '#fff', fontSize: '40px', fontWeight: 'bolder' }}>
+                            MASONS BEEF
                         </NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
                                 <NavItem position="right">
-                                    <Button href="https://wwww.google.com" className="nav-btn" outline color="secondary" style={{ margin: '1rem' }}>About us</Button>
-                                    <Button href="https://wwww.google.com" className="nav-btn" outline color="secondary" style={{ margin: '1rem' }}>Our Products</Button>
-                                    <Button href="https://wwww.google.com" className="nav-btn" outline color="secondary" style={{ margin: '1rem' }}>FAQ</Button>
-                                    <Button href="https://wwww.google.com" className="nav-btn" outline color="secondary" style={{ margin: '1rem' }}>Cart</Button>
-                                    <Button href="https://wwww.google.com" className="nav-btn" outline color="secondary" style={{ margin: '1rem' }}>Log In</Button>
+                                    <Button href="https://wwww.google.com" className="nav-btn" outline color="info" style={{ margin: '1rem' }}>About us</Button>
+                                    <Button href="https://wwww.google.com" className="nav-btn" outline color="info" style={{ margin: '1rem' }}>Our Products</Button>
+                                    <Button href="https://wwww.google.com" className="nav-btn" outline color="info" style={{ margin: '1rem' }}>FAQ</Button>
+                                    <Button href="https://wwww.google.com" className="nav-btn" outline color="info" style={{ margin: '1rem' }}>Cart</Button>
+                                    <RegisterModal />
                                 </NavItem>
                             </Nav>
                         </Collapse>
                     </Container>
                 </Navbar>
-            </div>
+            </div >
         );
     }
 }

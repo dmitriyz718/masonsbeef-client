@@ -2,3 +2,34 @@
   float: left !important;
   padding: -15px !important;
 }
+
+.remove-btn {
+  margin-right: 0.5rem;
+}
+
+.fade-enter {
+  opacity: 0.01
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0.01;
+  transition: opacity 1000ms ease-in;
+}
+
+.jumbo {
+  width: 80vw;
+}
+
+.brand-text {
+  font-family: 'Dancing Script', cursive;
+  color: '#fff';
+}
