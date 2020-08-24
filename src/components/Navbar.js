@@ -33,7 +33,7 @@ class NavBar extends Component {
             <Fragment>
 
                 <span className="navbar-text mr-3">
-                    <strong>{user ? `Welcome ${user.name}` : null}</strong>
+                    <strong>{user ? `Welcome ${user.email}` : null}</strong>
                 </span>
 
                 <Logout />
