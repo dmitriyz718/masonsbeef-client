@@ -5,8 +5,14 @@ import { connect } from 'react-redux';
 import { getProducts, deleteProduct } from '../actions/itemActions';
 import PropTypes from 'prop-types';
 
-class Products extends Component {
 
+
+class ShoppingList extends Component {
+    static propTypes = {
+        getItems: PropTypes.func.isRequired,
+        item: PropTypes.object.isRequired,
+        isAuthenticated: PropTypes.bool
+    }
     componentDidMount() {
         this.props.getProducts();
     }
@@ -25,10 +31,10 @@ class Products extends Component {
                         {items.map(({ _id, name }) => (
                             <CSSTransition key={_id} timeout={500} classNames="fade">
                                 <ListGroupItem>
-                                    <Button className="remove-btn"
+                                    {this.props.isAuthenticated ? <Button className="remove-btn"
                                         color="danger"
                                         size="sm"
-                                        onClick={this.onDeleteClick.bind(this, _id)}>&times;</Button>
+                                        onClick={this.onDeleteClick.bind(this, _id)}>&times;</Button> : null}
                                     {name}
                                 </ListGroupItem>
                             </CSSTransition>
@@ -39,12 +45,9 @@ class Products extends Component {
         )
     }
 }
-Products.propTypes = {
-    getProducts: PropTypes.func.isRequired,
-    item: PropTypes.object.isRequired
-}
 const mapStateToProps = (state) => ({
-    item: state.item
+    item: state.item,
+    isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps, { getProducts, deleteProduct })(Products);
