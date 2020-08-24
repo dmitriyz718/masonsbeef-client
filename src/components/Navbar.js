@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import '../App.css';
 import {
     Button,
@@ -7,6 +8,7 @@ import {
     NavbarToggler,
     Nav,
     NavItem,
+    NavLink,
     Container,
     NavbarBrand,
 
@@ -53,18 +55,19 @@ class NavBar extends Component {
 
                 <Navbar color="dark" dark expand="sm" className="mb-5" sticky="top">
                     <Container>
+                        <Link to="/">
+                            <NavbarBrand className="brand-text" style={{ color: '#fff', fontSize: '40px', fontWeight: 'bolder' }}>
+                                <NavLink className="brand-text" style={{ color: '#fff', fontSize: '40px', fontWeight: 'bolder' }}>MASONS BEEF</NavLink>
 
-                        <NavbarBrand href="/" className="brand-text" style={{ color: '#fff', fontSize: '40px', fontWeight: 'bolder' }}>
-                            MASONS BEEF
-                        </NavbarBrand>
+                            </NavbarBrand></Link>
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
                                 <NavItem position="right">
-                                    <Button href="https://wwww.google.com" className="nav-btn" outline color="info" style={{ margin: '1rem' }}>About us</Button>
-                                    <Button href="https://wwww.google.com" className="nav-btn" outline color="info" style={{ margin: '1rem' }}>Our Products</Button>
-                                    <Button href="https://wwww.google.com" className="nav-btn" outline color="info" style={{ margin: '1rem' }}>FAQ</Button>
-                                    <Button href="https://wwww.google.com" className="nav-btn" outline color="info" style={{ margin: '1rem' }}>Cart</Button>
+                                    <Link to="/about"><Button className="nav-btn" outline color="info" style={{ margin: '1rem' }}>About us</Button></Link>
+                                    <Link to="/products"><Button className="nav-btn" outline color="info" style={{ margin: '1rem' }}>Our Products</Button></Link>
+                                    <Link to="/faq"><Button className="nav-btn" outline color="info" style={{ margin: '1rem' }}>FAQ</Button></Link>
+                                    <Link to="/cart"><Button className="nav-btn" outline color="info" style={{ margin: '1rem' }}>Cart</Button></Link>
                                     {isAuthenticated ? authLinks : guestLinks}
                                 </NavItem>
                             </Nav>

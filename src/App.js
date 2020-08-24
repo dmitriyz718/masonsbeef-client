@@ -3,11 +3,16 @@ import { Provider } from 'react-redux';
 import Navbar from './components/Navbar';
 import store from './store'
 import { Container } from 'reactstrap';
-import Landing from './components/Landing';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { loadUser } from './actions/authActions';
-
+import Routes from './config/Routes';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 class App extends Component {
 
   componentDidMount() {
@@ -17,13 +22,14 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <div className="App" >
-          <Navbar />
-          <Container className="themed-container" fluid={true}>
-            <Landing />
-            {/* <Products /> */}
-          </Container>
-        </div>
+        <Router>
+          <div className="App" >
+            <Navbar />
+            <Container className="themed-container" fluid={true}>
+            </Container>
+            <Routes />
+          </div>
+        </Router>
       </Provider >
     );
   }

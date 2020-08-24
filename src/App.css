@@ -33,3 +33,34 @@
   font-family: 'Dancing Script', cursive;
   color: '#fff';
 }
+
+.btn-circle.btn-sm {
+  width: 30px;
+  height: 30px;
+  padding: 0 0 3px 0;
+  border-radius: 15px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.container-fluid {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* defined the main axis */
+  justify-content: center;
+  /* y-axis */
+  align-items: center;
+  /* x-axis */
+}
+
+.contdsdainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* defined the main axis */
+  justify-content: center;
+  /* y-axis */
+  align-items: center;
+  /* x-axis */
+}
