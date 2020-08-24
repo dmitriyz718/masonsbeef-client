@@ -12,6 +12,8 @@ import {
     NavbarBrand,
 
 } from 'reactstrap';
+import Logout from './auth/Logout';
+import LoginModal from './auth/LoginModal';
 import { Image } from 'react-bootstrap';
 import RegisterModal from '../components/auth/registerModal';
 class AppNavBar extends Component {
@@ -43,6 +45,8 @@ class AppNavBar extends Component {
                                     <Button href="https://wwww.google.com" className="nav-btn" outline color="info" style={{ margin: '1rem' }}>FAQ</Button>
                                     <Button href="https://wwww.google.com" className="nav-btn" outline color="info" style={{ margin: '1rem' }}>Cart</Button>
                                     <RegisterModal />
+                                    <LoginModal />
+                                    <Logout />
                                 </NavItem>
                             </Nav>
                         </Collapse>
