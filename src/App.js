@@ -9,6 +9,7 @@ import { loadUser } from './actions/authActions';
 import Routes from './config/Routes';
 import { BrowserRouter as Router, } from "react-router-dom";
 import Footer from './components/footer/Footer';
+import ProductModal from './components/products/ProductModal';
 
 class App extends Component {
 
@@ -27,6 +28,7 @@ class App extends Component {
             <Routes />
           </div>
           <Footer />
+
         </Router>
       </Provider >
     );

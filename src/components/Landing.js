@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import {
     Card, Button, CardImg, CardTitle, CardText, CardGroup,
     CardSubtitle, CardBody, Container
 } from 'reactstrap';
 import '../App.css'
 import Reviews from './reviews/Reviews';
-
 class Landing extends Component {
     render() {
         return (
@@ -17,7 +17,7 @@ class Landing extends Component {
                             <CardTitle><strong>Made in Texas</strong></CardTitle>
                             <CardSubtitle>The Lone Star State</CardSubtitle>
                             <CardText>If there is one thing we know in Texas, its our beef. From steaks to Mason's jerky. We only use fine hand selected USDA beef for our products. Everything that we make it made with love and made to bring your taste buds to life. Mason's beef jerky makes for a perfect snack, or a game time addition!</CardText>
-                            <Button color="info">Products</Button>
+                            <Link to="/products"><Button color="info">Products</Button></Link>
                         </CardBody>
                     </Card>
                     <Card className="p-2 m-1 border border-dark">
@@ -26,7 +26,7 @@ class Landing extends Component {
                             <CardTitle><strong>Family Owned, Family Ran</strong></CardTitle>
                             <CardSubtitle>Support small businesses</CardSubtitle>
                             <CardText>When it comes to quality, it often happens that big corporations lose focus of that. We keep quality in mind, both for our product, as well as taking care of our customers. We love hearing about people enjoying our product and waiting for the next batch! That's right, we're good enough that we sometimes run out of stock on some flavors!</CardText>
-                            <Button color="info">About Us</Button>
+                            <Link to="/about"><Button color="info">Learn more about us!</Button></Link>
                         </CardBody>
                     </Card>
                     <Card className="p-2 m-1 border border-dark">
@@ -40,6 +40,7 @@ class Landing extends Component {
                     </Card>
                 </CardGroup>
                 <Reviews />
+
             </Container>
 
         );

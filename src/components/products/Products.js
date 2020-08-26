@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { getProducts, deleteProduct } from '../../actions/itemActions';
 import PropTypes from 'prop-types';
 import ItemModel from '../itemModal';
+import ProductModal from './ProductModal';
 
 
 class Products extends Component {
@@ -23,6 +24,9 @@ class Products extends Component {
     }
     onDeleteClick = (id) => {
         this.props.deleteProduct(id);
+    }
+    onViewClick = (id) => {
+
     }
 
     render() {
@@ -44,7 +48,7 @@ class Products extends Component {
                                                     <CardTitle><strong>{name}</strong></CardTitle>
                                                     <CardSubtitle><strong>Quantity remaining:</strong> {quantity}</CardSubtitle>
                                                     <CardText>{description}</CardText>
-                                                    <Button color="info">Order!</Button>
+                                                    <ProductModal id={_id} />
                                                     {this.props.isAuthenticated ? <Button className="btn btn-danger btn-circle btn-sm float-right"
                                                         color="danger"
                                                         onClick={this.onDeleteClick.bind(this, _id)}>&times;</Button> : null}

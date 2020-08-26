@@ -11,7 +11,6 @@ import {
     NavLink,
     Container,
     NavbarBrand,
-
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import Logout from './auth/Logout';

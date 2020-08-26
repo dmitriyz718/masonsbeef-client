@@ -7,8 +7,8 @@ import {
     Form,
     FormGroup,
     Label,
-    Input
 } from 'reactstrap';
+import { Image } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getProduct } from '../../actions/itemActions';
@@ -22,11 +22,13 @@ class ProductModal extends Component {
         imgUrl: '',
         quantity: 0
     }
+    static propTypes = {
+        isAuthenticated: PropTypes.bool,
+        singleItem: PropTypes.object.isRequired
+    }
+
     componentDidMount() {
         this.props.getProduct(this.props.id)
-    }
-    static propTypes = {
-        isAuthenticated: PropTypes.bool
     }
     toggle = () => {
         this.setState({
@@ -47,43 +49,43 @@ class ProductModal extends Component {
 
     }
     render() {
-        const { items } = this.props.item
+
         return (
             <Fragment>
-                {this.props.isAuthenticated ? <Button
+                <Button
                     color="dark"
                     style={{ marginBottom: '2rem' }}
                     onClick={this.toggle}
-                >Add Item</Button> : <h4 className="mb-3 ml-4">Please enjoy our variety of delicious products.</h4>}
+                >View Item</Button>
                 <Modal isOpen={this.state.modal}
                     toggle={this.toggle}>
-                    <ModalHeader toggle={this.toggle}>Add Products</ModalHeader>
+                    <ModalHeader toggle={this.toggle}>View Product</ModalHeader>
                     <ModalBody>
                         <Form onSubmit={this.onSubmit}>
                             <FormGroup>
-                                <Label for="name">{items.name}</Label>
-                                <Input type="text" name="name" id="name" placeholder="Product Name" onChange={this.onChange} />
-                                <Label for="description">Description</Label>
-                                <Input type="textarea" name="description" id="item" placeholder="description" onChange={this.onChange} />
-                                <Label for="creator">Creator</Label>
-                                <Input type="text" name="creator" id="creator" placeholder="Jenn Gill" onChange={this.onChange} />
-                                <Label for="imgUrl">Link to Image</Label>
-                                <Input type="text" name="imgUrl" id="imgUrl" placeholder="Add Item" onChange={this.onChange} />
-                                <Label for="quantity">Quantity Available</Label>
-                                <Input type="number" name="quantity" id="quantity" placeholder="Quantity Available" onChange={this.onChange} />
-                                <Button color="dark" style={{ marginTop: '2rem' }} block>View Product</Button>
+                                <Label for="name"><strong>Flavor:</strong> {this.props.item.name}</Label>
+
+                                <Label for="description"><strong>Description: </strong>{this.props.item.description}</Label>
+
+                                <Label for="creator"><strong>Crafted by: </strong>{this.props.item.creator}</Label>
+
+                                <Image src={this.props.item.imgUrl} fluid></Image>
+
+                                <Label for="quantity"><strong>Quantity left: </strong>{this.props.item.quantity}</Label>
+
+                                <Button color="dark" style={{ marginTop: '2rem' }} block>Add To Cart</Button>
 
 
                             </FormGroup>
                         </Form>
                     </ModalBody>
                 </Modal>
-            </Fragment>
+            </Fragment >
         )
     }
 }
 const mapStateToProps = state => ({
-    item: state.item,
+    item: state.item.singleItem,
     user: state.auth,
     isAuthenticated: state.auth.isAuthenticated
 })

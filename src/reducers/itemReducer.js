@@ -1,7 +1,7 @@
 import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING, UPDATE_ITEM, GET_ITEM } from '../actions/constants'
 const initialState = {
     items: [],
-    singleItem: null,
+    singleItem: {},
     loading: false
 }
 export default function (state = initialState, action) {
@@ -10,13 +10,15 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 items: action.payload,
-                loading: false
+                loading: false,
             }
         case GET_ITEM:
+            console.log(action.payload)
             return {
                 ...state,
-                items: action.payload,
-                singleItem: action.payload
+                /* items: action.payload, */
+                singleItem: action.payload,
+                loading: false,
             }
         case DELETE_ITEM:
             return {
