@@ -35,7 +35,7 @@ class NavBar extends Component {
             <Fragment>
 
                 <span className="navbar-text mr-3">
-                    <strong>{user ? `Welcome ${user.email}` : null}</strong>
+                    <strong>{user ? `Welcome ${user.username}` : null}</strong>
                 </span>
 
                 <Logout />
@@ -66,7 +66,7 @@ class NavBar extends Component {
                                 <NavItem position="right">
                                     <Link to="/about"><Button className="nav-btn" outline color="info" style={{ margin: '1rem' }}>About us</Button></Link>
                                     <Link to="/products"><Button className="nav-btn" outline color="info" style={{ margin: '1rem' }}>Our Products</Button></Link>
-                                    <Link to="/faq"><Button className="nav-btn" outline color="info" style={{ margin: '1rem' }}>FAQ</Button></Link>
+                                    <Link to="/contact"><Button className="nav-btn" outline color="info" style={{ margin: '1rem' }}>Contact Us</Button></Link>
                                     <Link to="/cart"><Button className="nav-btn" outline color="info" style={{ margin: '1rem' }}>Cart</Button></Link>
                                     {isAuthenticated ? authLinks : guestLinks}
                                 </NavItem>

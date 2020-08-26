@@ -7,12 +7,9 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { loadUser } from './actions/authActions';
 import Routes from './config/Routes';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { BrowserRouter as Router, } from "react-router-dom";
+import Footer from './components/footer/Footer';
+
 class App extends Component {
 
   componentDidMount() {
@@ -29,6 +26,7 @@ class App extends Component {
             </Container>
             <Routes />
           </div>
+          <Footer />
         </Router>
       </Provider >
     );

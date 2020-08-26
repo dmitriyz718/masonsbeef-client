@@ -11,9 +11,9 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addProduct } from '../actions/itemActions';
+import { getProduct } from '../../actions/itemActions';
 
-class ItemModal extends Component {
+class ProductModal extends Component {
     state = {
         modal: false,
         name: '',
@@ -22,11 +22,12 @@ class ItemModal extends Component {
         imgUrl: '',
         quantity: 0
     }
-    static propTypes = {
-        isAuthenticated: PropTypes.bool,
-        item: PropTypes.object.isRequired
+    componentDidMount() {
+        this.props.getProduct(this.props.id)
     }
-
+    static propTypes = {
+        isAuthenticated: PropTypes.bool
+    }
     toggle = () => {
         this.setState({
             modal: !this.state.modal
@@ -38,21 +39,15 @@ class ItemModal extends Component {
     }
     onSubmit = e => {
         e.preventDefault();
-        const newItem = {
-            name: this.state.name,
-            description: this.state.description,
-            creator: this.state.creator,
-            imgUrl: this.state.imgUrl,
-            quantity: this.state.quantity
-        }
+
         // add item via additem action
-        this.props.addProduct(newItem);
 
         // close modal
         this.toggle();
 
     }
     render() {
+        const { items } = this.props.item
         return (
             <Fragment>
                 {this.props.isAuthenticated ? <Button
@@ -66,7 +61,7 @@ class ItemModal extends Component {
                     <ModalBody>
                         <Form onSubmit={this.onSubmit}>
                             <FormGroup>
-                                <Label for="name">Name</Label>
+                                <Label for="name">{items.name}</Label>
                                 <Input type="text" name="name" id="name" placeholder="Product Name" onChange={this.onChange} />
                                 <Label for="description">Description</Label>
                                 <Input type="textarea" name="description" id="item" placeholder="description" onChange={this.onChange} />
@@ -76,7 +71,7 @@ class ItemModal extends Component {
                                 <Input type="text" name="imgUrl" id="imgUrl" placeholder="Add Item" onChange={this.onChange} />
                                 <Label for="quantity">Quantity Available</Label>
                                 <Input type="number" name="quantity" id="quantity" placeholder="Quantity Available" onChange={this.onChange} />
-                                <Button color="dark" style={{ marginTop: '2rem' }} block>Add Product</Button>
+                                <Button color="dark" style={{ marginTop: '2rem' }} block>View Product</Button>
 
 
                             </FormGroup>
@@ -89,6 +84,7 @@ class ItemModal extends Component {
 }
 const mapStateToProps = state => ({
     item: state.item,
+    user: state.auth,
     isAuthenticated: state.auth.isAuthenticated
 })
-export default connect(mapStateToProps, { addProduct })(ItemModal);
+export default connect(mapStateToProps, { getProduct })(ProductModal);
