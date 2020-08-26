@@ -1,8 +1,9 @@
-import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING, UPDATE_ITEM, GET_ITEM } from './constants';
+import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING, UPDATE_ITEM, GET_ITEM, EMAIL_SENT, EMAIL_FAIL } from './constants';
 import axios from 'axios';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
 // all
+
 export const getProducts = () => dispatch => {
     dispatch(setItemsLoading());
     axios.get('http://localhost:5000/api/products')
@@ -48,6 +49,18 @@ export const updateProduct = (id, data) => (dispatch, getState) => {
             type: UPDATE_ITEM,
             payload: id
         }))
+}
+export const sendEmail = (emailData) => dispatch => {
+    dispatch(setItemsLoading());
+    axios({
+        method: "POST",
+        url: "http://localhost:5000/api/products/send",
+        data: emailData
+    }).then(res => dispatch({
+        type: EMAIL_SENT,
+        payload: res.data,
+    }))
+        .catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 export const setItemsLoading = () => {
     return {

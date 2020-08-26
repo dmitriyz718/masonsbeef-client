@@ -45,6 +45,9 @@ class LoginModal extends Component {
             }
         }
     }
+    resetForm() {
+        this.setState({ email: '', password: '' })
+    }
     toggle = () => {
         // clear errors
         this.props.clearErrors();
@@ -65,7 +68,7 @@ class LoginModal extends Component {
         };
         //attemp to log in
         this.props.login(user);
-
+        this.resetForm()
 
     }
     render() {

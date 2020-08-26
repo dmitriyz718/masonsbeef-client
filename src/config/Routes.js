@@ -10,7 +10,6 @@ export default function Routes() {
             <Route exact path='/' component={Landing} />
             <Route path='/products' component={Products} />
             <Route path='/about' component={About} />
-            <Route path='/contact' component={Contact} />
         </Switch>
     )
 }

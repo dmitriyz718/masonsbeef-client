@@ -27,10 +27,8 @@ class ProductModal extends Component {
         singleItem: PropTypes.object.isRequired
     }
 
-    componentDidMount() {
-        this.props.getProduct(this.props.id)
-    }
     toggle = () => {
+        this.props.getProduct(this.props.id)
         this.setState({
             modal: !this.state.modal
         });
@@ -42,7 +40,7 @@ class ProductModal extends Component {
     onSubmit = e => {
         e.preventDefault();
 
-        // add item via additem action
+        // add item to cart via additem action
 
         // close modal
         this.toggle();

@@ -15,6 +15,7 @@ import {
 import { connect } from 'react-redux';
 import Logout from './auth/Logout';
 import LoginModal from './auth/LoginModal';
+import ContactModal from './contact/Contact';
 import RegisterModal from '../components/auth/registerModal';
 class NavBar extends Component {
     state = {
@@ -65,7 +66,7 @@ class NavBar extends Component {
                                 <NavItem position="right">
                                     <Link to="/about"><Button className="nav-btn" outline color="info" style={{ margin: '1rem' }}>About us</Button></Link>
                                     <Link to="/products"><Button className="nav-btn" outline color="info" style={{ margin: '1rem' }}>Our Products</Button></Link>
-                                    <Link to="/contact"><Button className="nav-btn" outline color="info" style={{ margin: '1rem' }}>Contact Us</Button></Link>
+                                    <ContactModal />
                                     <Link to="/cart"><Button className="nav-btn" outline color="info" style={{ margin: '1rem' }}>Cart</Button></Link>
                                     {isAuthenticated ? authLinks : guestLinks}
                                 </NavItem>

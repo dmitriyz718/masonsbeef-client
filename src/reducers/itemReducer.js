@@ -13,7 +13,6 @@ export default function (state = initialState, action) {
                 loading: false,
             }
         case GET_ITEM:
-            console.log(action.payload)
             return {
                 ...state,
                 /* items: action.payload, */
