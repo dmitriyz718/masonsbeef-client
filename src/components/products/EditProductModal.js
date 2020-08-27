@@ -12,7 +12,7 @@ import {
 import { Image } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getProduct, updateProduct } from '../../actions/itemActions';
+import { getProducts, getProduct, updateProduct } from '../../actions/itemActions';
 
 class EditProductModal extends Component {
     state = {
@@ -30,6 +30,7 @@ class EditProductModal extends Component {
 
     toggle = () => {
         this.props.getProduct(this.props.id)
+        this.props.getProducts()
         this.setState({
             modal: !this.state.modal
         });
@@ -105,4 +106,4 @@ const mapStateToProps = state => ({
     user: state.auth,
     isAuthenticated: state.auth.isAuthenticated
 })
-export default connect(mapStateToProps, { getProduct, updateProduct })(EditProductModal);
+export default connect(mapStateToProps, { getProducts, getProduct, updateProduct })(EditProductModal);

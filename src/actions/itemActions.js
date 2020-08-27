@@ -1,4 +1,4 @@
-import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING, UPDATE_ITEM, GET_ITEM, EMAIL_SENT, EMAIL_FAIL } from './constants';
+import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING, UPDATE_ITEM, GET_ITEM, EMAIL_SENT } from './constants';
 import axios from 'axios';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
@@ -7,7 +7,7 @@ require('dotenv').config()
 
 export const getProducts = () => dispatch => {
     dispatch(setItemsLoading());
-    axios.get(`${process.env.REACT_APP_API_URL}/api/products`)
+    axios.get(`${process.env.REACT_APP_API}/api/products`)
         .then(res => dispatch({
             type: GET_ITEMS,
             payload: res.data
@@ -17,7 +17,7 @@ export const getProducts = () => dispatch => {
 // single
 export const getProduct = (id) => dispatch => {
     dispatch(setItemsLoading());
-    axios.get(`${process.env.REACT_APP_API_URL}/api/products/view/${id}`)
+    axios.get(`${process.env.REACT_APP_API}/api/products/view/${id}`)
         .then(res => dispatch({
             type: GET_ITEM,
             payload: res.data
@@ -27,7 +27,7 @@ export const getProduct = (id) => dispatch => {
 export const addProduct = (item) => (dispatch, getState) => {
     dispatch(setItemsLoading());
     axios
-        .post(`${process.env.REACT_APP_API_URL}/api/products`, item, tokenConfig(getState))
+        .post(`${process.env.REACT_APP_API}/api/products`, item, tokenConfig(getState))
         .then(res => dispatch({
             type: ADD_ITEM,
             payload: res.data
@@ -37,7 +37,7 @@ export const addProduct = (item) => (dispatch, getState) => {
 // delete
 export const deleteProduct = (id) => (dispatch, getState) => {
     axios
-        .delete(`${process.env.REACT_APP_API_URL}/api/products/delete/${id}`, tokenConfig(getState)).then(res => dispatch({
+        .delete(`${process.env.REACT_APP_API}/api/products/delete/${id}`, tokenConfig(getState)).then(res => dispatch({
             type: DELETE_ITEM,
             payload: id
         }))
@@ -45,8 +45,9 @@ export const deleteProduct = (id) => (dispatch, getState) => {
 }
 // update
 export const updateProduct = (id, data) => (dispatch, getState) => {
+    dispatch(setItemsLoading());
     axios
-        .put(`${process.env.REACT_APP_API_URL}/api/products/update/${id}`, data, tokenConfig(getState)).then(res => dispatch({
+        .put(`${process.env.REACT_APP_API}/api/products/update/${id}`, data, tokenConfig(getState)).then(res => dispatch({
             type: UPDATE_ITEM,
             payload: id
         }))
@@ -55,7 +56,7 @@ export const sendEmail = (emailData) => dispatch => {
     dispatch(setItemsLoading());
     axios({
         method: "POST",
-        url: `${process.env.REACT_APP_API_URL}/api/products/send`,
+        url: `${process.env.REACT_APP_API}/api/products/send`,
         body: emailData
     }).then(res => dispatch({
         type: EMAIL_SENT,

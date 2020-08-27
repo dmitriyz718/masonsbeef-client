@@ -44,7 +44,7 @@ class Contact extends Component {
             message: this.state.message,
         }
 
-
+        this.props.sendEmail(emailData);
 
         this.toggle();
 

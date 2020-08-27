@@ -1,6 +1,5 @@
 {
   "name": "masonsbeef-client",
-  "homepage": "http://dnyc.dev/masonsbeef",
   "version": "0.1.0",
   "private": false,
   "dependencies": {

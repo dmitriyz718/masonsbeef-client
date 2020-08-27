@@ -1,9 +1,8 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Products from '../components/products/Products';
 import Landing from '../components/Landing'
 import About from '../components/about/About';
-import Contact from '../components/contact/Contact';
 export default function Routes() {
     return (
         <Switch>

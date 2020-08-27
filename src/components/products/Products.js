@@ -25,9 +25,6 @@ class Products extends Component {
     onDeleteClick = (id) => {
         this.props.deleteProduct(id);
     }
-    onViewClick = (id) => {
-
-    }
 
     render() {
         const { items } = this.props.item;

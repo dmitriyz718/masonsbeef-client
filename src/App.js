@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
+import store from './store'
 import { Provider } from 'react-redux';
 import Navbar from './components/Navbar';
-import store from './store'
-import { Container } from 'reactstrap';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { loadUser } from './actions/authActions';
 import Routes from './config/Routes';
 import { BrowserRouter as Router, } from "react-router-dom";
+import { Container } from 'reactstrap';
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from './components/footer/Footer';
-import ProductModal from './components/products/ProductModal';
 require('dotenv').config()
 
 class App extends Component {
