@@ -10,6 +10,7 @@ import Routes from './config/Routes';
 import { BrowserRouter as Router, } from "react-router-dom";
 import Footer from './components/footer/Footer';
 import ProductModal from './components/products/ProductModal';
+require('dotenv').config()
 
 class App extends Component {
 

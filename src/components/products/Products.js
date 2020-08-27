@@ -11,7 +11,7 @@ import { getProducts, deleteProduct } from '../../actions/itemActions';
 import PropTypes from 'prop-types';
 import ItemModel from '../itemModal';
 import ProductModal from './ProductModal';
-
+import EditProductModal from './EditProductModal';
 
 class Products extends Component {
     static propTypes = {
@@ -49,6 +49,8 @@ class Products extends Component {
                                                     <CardSubtitle><strong>Quantity remaining:</strong> {quantity}</CardSubtitle>
                                                     <CardText>{description}</CardText>
                                                     <ProductModal id={_id} />
+                                                    {this.props.isAuthenticated ?
+                                                        <EditProductModal id={_id} /> : null}
                                                     {this.props.isAuthenticated ? <Button className="btn btn-danger btn-circle btn-sm float-right"
                                                         color="danger"
                                                         onClick={this.onDeleteClick.bind(this, _id)}>&times;</Button> : null}

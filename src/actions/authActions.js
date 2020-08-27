@@ -10,13 +10,13 @@ import {
     REGISTER_SUCCESS,
     REGISTER_FAIL
 } from "./constants";
-
+require('dotenv').config()
 // check token & load user
 export const loadUser = () => (dispatch, getState) => {
     // user loading false to true
     dispatch({ type: USER_LOADING });
 
-    axios.get('http://www.localhost:5000/api/auth/user', tokenConfig(getState))
+    axios.get(`${REACT_APP_API_URL}/api/auth/user`, tokenConfig(getState))
         .then(res => dispatch({
             type: USER_LOADED,
             payload: res.data
@@ -38,7 +38,7 @@ export const register = ({ username, email, password }) => dispatch => {
         }
     }
     const body = JSON.stringify({ username, email, password });
-    axios.post('http://localhost:5000/api/auth/', body, config)
+    axios.post(`${REACT_APP_API_URL}/api/auth/`, body, config)
         .then(res => dispatch({
             type: REGISTER_SUCCESS,
             payload: res.data
@@ -75,7 +75,7 @@ export const login = ({ name, email, password }) => dispatch => {
         }
     }
     const body = JSON.stringify({ email, password });
-    axios.post('http://localhost:5000/api/verify', body, config)
+    axios.post(`${REACT_APP_API_URL}/api/verify`, body, config)
         .then(res => dispatch({
             type: LOGIN_SUCCESS,
             payload: res.data
