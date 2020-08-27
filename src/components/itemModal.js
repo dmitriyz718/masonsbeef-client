@@ -55,7 +55,7 @@ class ItemModal extends Component {
     render() {
         return (
             <Fragment>
-                {this.props.isAuthenticated ? <Button
+                {this.props.isAuthenticated && this.props.isAdmin ? <Button
                     color="dark"
                     style={{ marginBottom: '2rem' }}
                     onClick={this.toggle}
@@ -89,6 +89,7 @@ class ItemModal extends Component {
 }
 const mapStateToProps = state => ({
     item: state.item,
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    isAdmin: state.auth.isAdmin
 })
 export default connect(mapStateToProps, { addProduct })(ItemModal);

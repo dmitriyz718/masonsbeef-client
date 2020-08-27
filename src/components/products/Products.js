@@ -46,9 +46,9 @@ class Products extends Component {
                                                     <CardSubtitle><strong>Quantity remaining:</strong> {quantity}</CardSubtitle>
                                                     <CardText>{description}</CardText>
                                                     <ProductModal id={_id} />
-                                                    {this.props.isAuthenticated ?
+                                                    {this.props.isAuthenticated && this.props.isAdmin ?
                                                         <EditProductModal id={_id} /> : null}
-                                                    {this.props.isAuthenticated ? <Button className="btn btn-danger btn-circle btn-sm float-right"
+                                                    {this.props.isAuthenticated && this.props.isAdmin ? <Button className="btn btn-danger btn-circle btn-sm float-right"
                                                         color="danger"
                                                         onClick={this.onDeleteClick.bind(this, _id)}>&times;</Button> : null}
                                                 </CardBody>
@@ -67,7 +67,8 @@ class Products extends Component {
 const mapStateToProps = (state) => ({
     item: state.item,
     user: state.auth,
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    isAdmin: state.auth.isAdmin
 });
 
 export default connect(mapStateToProps, { getProducts, deleteProduct })(Products);
